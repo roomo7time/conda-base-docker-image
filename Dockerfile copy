@@ -1,5 +1,10 @@
+
+
+
+
 # Use nvidia/cuda as the base image
 FROM nvidia/cuda:11.8.0-devel-ubuntu20.04
+# FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 # Set environment variables for Miniconda
 ENV PATH="/root/miniconda3/bin:${PATH}"
@@ -19,12 +24,14 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_
 # Ensure conda base environment activation on each new shell
 RUN echo "source activate base" >> ~/.bashrc
 
-# Copy the install_packages.sh script into the image
-COPY install_packages.sh /tmp/install_packages.sh
+# Any additional actions to set up your environment
 
-# Give execution permissions to the script and execute it
-RUN chmod +x /tmp/install_packages.sh && \
-    /tmp/install_packages.sh
+# Copy your application files (if any) into the Docker image
+# COPY . /app
+# WORKDIR /app
 
-# Set the working directory to /app (assuming your app resides there)
-WORKDIR /app
+# Install any necessary dependencies you may have (if any)
+# RUN conda install --file requirements.txt
+
+# The command that will run when the container starts
+# CMD [ "/bin/bash", "-c", "source activate base && python your_script.py" ]

@@ -5,7 +5,7 @@ docker build -t <image name>:<tag name> .
 ```
 In my case:
 ```bash
-docker build -t aivsw/research:0.1 .
+docker build -t aivsw/research:mm-cu11.8-u20 .
 ```
 
 Run the container by
@@ -18,7 +18,7 @@ For example:
 ```bash
 docker run -it --gpus all --ipc host \
   -v /home/jay/workspace/codes/research:/app/algorithms \
-  -v /home/jay/mnt/hdd/workspace/datasets:/app/datasets \
-  --name research_container aivsw/research:0.1 /bin/bash
+  -v /home/jay/mnt/hdd/data:/app/data \
+  --name research_mm aivsw/research:mm-cu11.8-u20 /bin/bash
 ```
 
