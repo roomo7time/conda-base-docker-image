@@ -1,10 +1,10 @@
 CONTAINER_NAME='research_mm'
-IMAGE_NAME='aivsw/research:mm-cu11.8-u20'
+IMAGE_NAME='aivsw/research:mm-cu11.7-u20'
 
 # Stop and remove any existing container with the same name
 if [ $(docker ps -aq -f name=^"$CONTAINER_NAME"$) ]; then
    docker stop "$CONTAINER_NAME"
-   docker rm "$CONTAINER_NAME"
+   docker rm -f "$CONTAINER_NAME"
 fi
 
 # Remove the old image if it exists

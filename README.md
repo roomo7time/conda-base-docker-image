@@ -17,7 +17,7 @@ docker run -it --gpus all --ipc host \
 For example:
 ```bash
 docker run -it --gpus all --ipc host \
-  -v /home/jay/workspace/codes/research:/app/algorithms \
+  -v /home/jay/projects:/app/projects \
   -v /home/jay/mnt/hdd/data:/app/data \
   --name research_mm aivsw/research:mm-cu11.8-u20 /bin/bash
 ```

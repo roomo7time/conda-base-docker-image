@@ -1,0 +1,13 @@
+# Use nvidia/cuda as the base image
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+
+
+
+# Update and install wget and libpq-dev
+RUN apt-get update && \
+    apt-get install -y wget libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+
+# Set the working directory to /app (assuming your app resides there)
+WORKDIR /app
