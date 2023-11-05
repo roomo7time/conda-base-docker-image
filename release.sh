@@ -23,7 +23,7 @@ if [ -n "$existing_image" ]; then
 fi
 
 # Build the Docker image from the specified Dockerfile and context directory
-docker build -t "$IMAGE_NAME" "scripts/$VERSION_NAME"
+docker build -t "$IMAGE_NAME" -f "scripts/$VERSION_NAME/Dockerfile" .
 
 # Run the Docker container
 docker run -it --gpus all --ipc host \

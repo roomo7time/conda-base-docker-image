@@ -7,10 +7,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy the install_packages.sh script into the container
-COPY install_packages.sh /install_packages.sh
+COPY install_files/install_packages.sh tmp/install_packages.sh
 
 # Make sure the script is executable and execute the script
-RUN chmod +x /install_packages.sh &&  /install_packages.sh && rm /install_packages.sh
+RUN chmod +x tmp/install_packages.sh && tmp/install_packages.sh && rm tmp/install_packages.sh
 
 # Set the working directory to /app (assuming your app resides there)
 WORKDIR /app
