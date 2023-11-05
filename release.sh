@@ -1,22 +1,33 @@
-CONTAINER_NAME='research_mm'
-IMAGE_NAME='aivsw/research:mm-cu11.7-u20'
+#!/bin/bash
+set -e  # Exit immediately if a command exits with a non-zero status.
 
-# Stop and remove any existing container with the same name
-if [ $(docker ps -aq -f name=^"$CONTAINER_NAME"$) ]; then
-   docker stop "$CONTAINER_NAME"
-   docker rm -f "$CONTAINER_NAME"
+VERSION_NAME='mmdeploy_torch2p1_cuda11p8_cudnn8'
+IMAGE_NAME="aivsw/research:$VERSION_NAME"
+
+# Stop and remove any existing containers with the same name
+existing_containers=$(docker ps -aq -f name=^"${VERSION_NAME}"$)
+if [ -n "$existing_containers" ]; then
+   docker rm -f "$existing_containers"
+fi
+
+# Stop and remove any containers using the target image
+containers_using_image=$(docker ps -aq -f ancestor="$IMAGE_NAME")
+if [ -n "$containers_using_image" ]; then
+   docker rm -f $containers_using_image
 fi
 
 # Remove the old image if it exists
-if [ $(docker images -q "$IMAGE_NAME") ]; then
-   docker rmi "$IMAGE_NAME"
+existing_image=$(docker images -q "$IMAGE_NAME")
+if [ -n "$existing_image" ]; then
+   docker rmi -f "$existing_image"
 fi
 
-# Build the Docker image
-docker build -t "$IMAGE_NAME" .
+# Build the Docker image from the specified Dockerfile and context directory
+docker build -t "$IMAGE_NAME" "scripts/$VERSION_NAME"
 
 # Run the Docker container
 docker run -it --gpus all --ipc host \
-  -v /home/jay/workspace/codes/research:/app/algorithms \
+  -v /home/jay/projects:/app/projects \
   -v /home/jay/mnt/hdd/data:/app/data \
-  --name "$CONTAINER_NAME" "$IMAGE_NAME" /bin/bash
+  --name "$VERSION_NAME" "$IMAGE_NAME" /bin/bash
+
