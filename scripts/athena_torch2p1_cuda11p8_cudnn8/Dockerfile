@@ -1,0 +1,21 @@
+# Use nvidia/cuda as the base image
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+
+# Update and install wget and libpq-dev
+RUN apt-get update && \
+    apt-get install -y wget libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the install_packages.sh script into the container
+COPY scripts/athena_torch2p1_cuda11p8_cudnn8/install_packages.sh /tmp/install_packages.sh
+COPY scripts/athena_torch2p1_cuda11p8_cudnn8/requirements.txt /tmp/requirements.txt
+
+WORKDIR /tmp
+
+# Make sure the script is executable and execute the script
+RUN chmod +x ./install_packages.sh && ./install_packages.sh && rm ./install_packages.sh && rm ./requirements.txt
+# RUN chmod +x ./install_packages.sh && rm ./install_packages.sh
+
+# Set the working directory to /app (assuming your app resides there)
+WORKDIR /app
+

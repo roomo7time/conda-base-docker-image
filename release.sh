@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e  # Exit immediately if a command exits with a non-zero status.
 
-VERSION_NAME='mmframework_torch2p1_cuda11p8_cudnn8'
+VERSION_NAME='athena_torch2p1_cuda11p8_cudnn8'
 IMAGE_NAME="aivsw/research:$VERSION_NAME"
 
 # Stop and remove any existing containers with the same name
