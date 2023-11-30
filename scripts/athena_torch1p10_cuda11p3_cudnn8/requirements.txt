@@ -44,8 +44,7 @@ networkx==3.1
 numpy==1.23.1
 oauthlib==3.2.2
 omegaconf==2.3.0
-onnx==1.11.0
-onnxruntime==1.16.0
+onnxruntime
 opencv-python-headless==4.8.0.76
 opt-einsum==3.3.0
 packaging==23.1
@@ -80,7 +79,7 @@ tensorflow-datasets==4.7.0
 tensorflow-gpu==2.9.1
 tensorflow-estimator==2.9.0
 termcolor==2.3.0
-tf2onnx==1.13.0
+tf2onnx
 threadpoolctl==3.2.0
 tifffile==2023.8.30
 tomli==2.0.1

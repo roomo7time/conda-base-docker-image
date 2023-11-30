@@ -45,7 +45,6 @@ networkx==3.1
 numpy==1.23.1
 oauthlib==3.2.2
 omegaconf==2.3.0
-onnx==1.12.0
 onnxruntime-gpu==1.16.2
 opencv-python-headless==4.8.0.76
 opt-einsum==3.3.0
