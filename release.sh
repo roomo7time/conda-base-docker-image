@@ -17,5 +17,5 @@ docker build -t "$IMAGE_NAME" .
 
 # Run the Docker container
 docker run -it --gpus all --ipc host \
-  -v /home/aivdl9/storage/research:/mnt/data \
+  -v $HOME/storage/research:/app \
   --name "$CONTAINER_NAME" "$IMAGE_NAME" /bin/bash
