@@ -1,4 +1,4 @@
-CONTAINER_NAME='patchcore'
+CONTAINER_NAME='coresetad'
 IMAGE_NAME='aivsw/research:cu11.8-cudnn8-u20'
 
 # Stop and remove any existing container with the same name
