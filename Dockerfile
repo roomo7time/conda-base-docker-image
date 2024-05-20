@@ -1,6 +1,8 @@
 # Use nvidia/cuda as the base image
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Set environment variables for Miniconda
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG PATH="/root/miniconda3/bin:${PATH}"
@@ -8,6 +10,8 @@ ARG PATH="/root/miniconda3/bin:${PATH}"
 # Update and install wget and libpq-dev
 RUN apt-get update && \
     apt-get install -y wget libpq-dev && \
+    apt-get install -y libgl1-mesa-glx && \
+    apt-get install -y libglib2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Miniconda
